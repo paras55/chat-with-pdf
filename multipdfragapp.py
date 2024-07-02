@@ -14,7 +14,6 @@ from langchain.agents import AgentExecutor, create_tool_calling_agent
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
-load_dotenv()
 embeddings = SpacyEmbeddings(model_name="en_core_web_sm")
 def pdf_read(pdf_doc):
     text = ""
