@@ -1,18 +1,21 @@
 import streamlit as st
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-#import os
+import os
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.embeddings.spacy_embeddings import SpacyEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.tools.retriever import create_retriever_tool
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 #from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 
-import os
+
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
+
+load_dotenv()
+openAI_api_key = os.getenv('OPEN_AI_KEY')
 
 embeddings = SpacyEmbeddings(model_name="en_core_web_sm")
 def pdf_read(pdf_doc):
@@ -40,7 +43,7 @@ def vector_store(text_chunks):
 def get_conversational_chain(tools,ques):
     #os.environ["ANTHROPIC_API_KEY"]=os.getenv["ANTHROPIC_API_KEY"]
     #llm = ChatAnthropic(model="claude-3-sonnet-20240229", temperature=0, api_key=os.getenv("ANTHROPIC_API_KEY"),verbose=True)
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, api_key="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")
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, api_key=openAI_api_key)
     prompt = ChatPromptTemplate.from_messages(
     [
         (
