@@ -15,7 +15,9 @@ os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 openAI_api_key = st.secrets["OPENAI_API_KEY"]
 
-embeddings = SpacyEmbeddings(model_name="en_core_web_sm")
+#embeddings = SpacyEmbeddings(model_name="en_core_web_sm")
+embeddings = OpenAIEmbeddings(allowed_special={'<|endofprompt|>'})
+
 def pdf_read(pdf_doc):
     text = ""
     for pdf in pdf_doc:
