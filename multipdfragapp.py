@@ -99,5 +99,11 @@ def main():
                 vector_store(text_chunks)
                 st.success("Done")
 
+    st.header('Detailed Blog Post')
+
+    st.image('pdf.png', caption='Talking to the Mulitple PDFs')
+    
+    st.subheader("Check out this [Medium blog I wrote](https://blog.gopenai.com/building-a-multi-pdf-rag-chatbot-langchain-streamlit-with-code-d21d0a1cf9e5)")
+
 if __name__ == "__main__":
     main()
